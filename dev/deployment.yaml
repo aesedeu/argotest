@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ae-app
+spec:
+  selector:
+    matchLabels:
+      app: ae-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ae-app
+    spec:
+      containers:
+      - name: ae-app
+        image: aesedeu/my-fastapi-app:latest
+        ports:
+        - containerPort: 9000
