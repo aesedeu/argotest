@@ -16,4 +16,4 @@ spec:
       - name: ae-app
         image: aesedeu/my-fastapi-app:latest
         ports:
-        - containerPort: 9000
+        - containerPort: 8000
