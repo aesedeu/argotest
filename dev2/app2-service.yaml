@@ -4,7 +4,7 @@ metadata:
   name: myapp-service-postgres
 spec:
   selector:
-    app: ae-app2
+    app: myapp-service-postgres
   ports:
   - port: 5432
     protocol: TCP
