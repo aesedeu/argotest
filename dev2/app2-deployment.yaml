@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ae-app2
+spec:
+  selector:
+    matchLabels:
+      app: ae-app2
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        app: ae-app2
+    spec:
+      containers:
+      - name: ae-app2
+        image: postgres:latest
+        ports:
+        - containerPort: 8000
