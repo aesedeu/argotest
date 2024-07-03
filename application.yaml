@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: endpoint-app
+  name: endpoint
   namespace: argocd
 spec:
   project: default
@@ -25,7 +25,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres-app
+  name: postgres
   namespace: argocd
 spec:
   project: default

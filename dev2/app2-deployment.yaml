@@ -16,5 +16,35 @@ spec:
       containers:
       - name: ae-app2
         image: postgres:latest
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-password
+        - name: POSTGRES_USER
+          value: postgres
         ports:
-        - containerPort: 8000
+        - containerPort: 5432
+        volumeMounts:
+        - name: postgres-config-volume
+          mountPath: /etc/postgresql
+      volumes:
+      - name: postgres-config-volume
+        configMap:
+          name: postgres-config-volume
+          items:
+          - key: postgresql.conf
+            path: postgresql.conf
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/data"
