@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: ae-app
-  replicas: 1
+  replicas: 4
   revisionHistoryLimit: 3
   template:
     metadata:
