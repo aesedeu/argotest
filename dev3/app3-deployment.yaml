@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-service-postgres
+spec:
+  selector:
+    matchLabels:
+      app: myapp-service-postgres
+  replicas: 1
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      labels:
+        app: myapp-service-postgres
+    spec:
+      containers:
+      - name: myapp-service-postgres
+        image: postgres:latest
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-password
+        - name: POSTGRES_USER
+          value: postgres
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: postgres-config-volume
+          mountPath: /etc/postgresql
+      volumes:
+      - name: postgres-config-volume
+        configMap:
+          name: postgres-config-volume
+          items:
+          - key: postgresql.conf
+            path: postgresql.conf
