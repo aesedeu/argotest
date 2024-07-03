@@ -23,7 +23,7 @@ spec:
               name: postgres-secret
               key: postgres-password
         - name: POSTGRES_USER
-          value: postgres
+          value: {{ Values.postgres_username }}
         ports:
         - containerPort: 5432
         volumeMounts:
