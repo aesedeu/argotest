@@ -36,15 +36,3 @@ spec:
           items:
           - key: postgresql.conf
             path: postgresql.conf
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: postgres-pv
-spec:
-  capacity:
-    storage: 5Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/mnt/data"
